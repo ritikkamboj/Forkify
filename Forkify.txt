@@ -1,0 +1,1 @@
+1. As we are using the SCSS , so we have to use the package.json for obvious reason , for that we have to run some commands 
