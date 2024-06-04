@@ -29,13 +29,19 @@ const renderSpinner = function (parentEl) {
 }
 // code to fetch the the data form JS api by using sync and awist and 
 
-const dummy = async function () {
+const showRecipe = async function () {
   try {
+    const id =window.location.hash.slice(1)
+    console.log(id);
+
+    // this below handling is called guard function
+    if(!id)
+      return ;
     renderSpinner(recipeContainer)
 
 
     // const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`);  // here this url is for specific id as we can see also
-    const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/664c8f193e7aa067e94e88b9`);  // here this url is for specific id as we can see also
+    const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);  // here this url is for specific id as we can see also
 
     const data = await res.json();
     console.log(res);
@@ -160,5 +166,17 @@ const dummy = async function () {
   }
 
 }
-dummy();
+showRecipe();
+
+// window.addEventListener('hashchange',showRecipe); // this works when we change the link 
+// but if we directly pasting the link in new tab that will nit come under the 'hashcahnge' event , so we have to use another event lstenrer 
+
+// window.addEventListener('load',showRecipe);
+
+// in above two window line code we can see that htey not follow DRY principle so to correct that :
+
+['hashchange','load'].forEach((ev)=> {
+
+window.addEventListener(ev,showRecipe);
+})
 
