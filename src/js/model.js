@@ -1,40 +1,43 @@
+import { API_URL } from "./config.js";
+import { getJson } from "./helpers.js";
+
 export const state ={
     recipe :{},
 }
 
 export const loadRecipe = async function(id)
 {
-    try{const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);  // here this url is for specific id as we can see also
+    try{
+      const data = await getJson(`${API_URL}/${id}`);
+      console.log(data);
+      console.log(data.data);
+      console.log(data.data.recipe);
+      
+      let recipe = data.data.recipe;
+      // let {recipe} = data.data;   this is the destructuring way 
+  
+  
+      state.recipe = {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients
+  
+      };
 
-    const data = await res.json();
-    console.log(res);
-    if (!res.ok) {
-      throw new Error(`${data.message}, ${res.status}`)
+      console.log(state.recipe);
+    }catch(err)
+    {
+       console.log(`${err} in model.js `);
+        
     }
-    console.log(data);
-    console.log(data.data);
-    console.log(data.data.recipe);
+   
+   
+ 
 
-    let recipe = data.data.recipe;
-    // let {recipe} = data.data;   this is the destructuring way 
-
-
-    state.recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients
-
-    };
-    console.log(state.recipe);
-}catch(err)
-{
-    alert(err);
-    
-}
     
 }
