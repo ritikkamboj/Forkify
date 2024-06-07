@@ -144,6 +144,8 @@ const showRecipe = async function () {
   } catch (err) {
     // console.log(`${err.message} yeh apne waala error hai`);
     alert(`${err.message} yeh apne waala error hai`);
+    recipeView.renderError();  // now again its a violation of MVC protocol as we are mention
+    //here the messege which is visible on view , we ahve to pass it to recipeView.js
   }
 
 }
