@@ -156,8 +156,9 @@ showRecipe();
 
 // in above two window line code we can see that htey not follow DRY principle so to correct that :
 
-['hashchange','load'].forEach((ev)=> {
-
-window.addEventListener(ev,showRecipe);
-})
+const init = function()
+{
+recipeView.addHandleRender(showRecipe);
+}
+init()
 
