@@ -1,10 +1,11 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 // console.log(icons)
 
-const recipeContainer = document.querySelector('.recipe');
+// const recipeContainer = document.querySelector('.recipe');
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {
@@ -33,22 +34,31 @@ console.log("jai maata di ")
 const controlSearchResults = async function()
 {
  try{
-  await model.loadSearchResults(`pizza`);
-  console.log(model.state.search.result);
+  // console.log('jai')
+  const query = searchView.getQuery();
+  console.log(query)
+  if(!query)
+    return
+  await model.loadSearchResults(query);
+  // searchView.clear();
+  // console.log(model.state.search.result);
 ;
- }
+ } 
  catch(err)
  {
+  // console.log('abab')
 console.log(err);
 
  }
 
 }
-controlSearchResults();
+// controlSearchResults();
+
+
 const showRecipe = async function () {
   try {
     const id =window.location.hash.slice(1)
-    console.log(id);
+    // console.log(id);
 
     // this below handling is called guard function
     if(!id)
@@ -176,6 +186,7 @@ showRecipe();
 const init = function()
 {
 recipeView.addHandleRender(showRecipe);
+searchView.addHandleSearch(controlSearchResults);
 }
 init()
 

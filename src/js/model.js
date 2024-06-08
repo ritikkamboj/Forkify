@@ -74,7 +74,7 @@ export const loadRecipe = async function(id)
   }
 
  }
- loadSearchResults(`pizza`);
+//  loadSearchResults(`pizza`);
 
 
 //  8: {publisher: "My Baking Addiction", image_url: "http://forkify-api.herokuapp.com/images/PizzaDip21of14f05.jpg", title: "Pizza Dip", id: "664c8f193e7aa067e94e840d"}
