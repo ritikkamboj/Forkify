@@ -30,6 +30,21 @@ console.log("jai maata di ")
 // }
 // code to fetch the the data form JS api by using sync and awist and 
 
+const controlSearchResults = async function()
+{
+ try{
+  await model.loadSearchResults(`pizza`);
+  console.log(model.state.search.result);
+;
+ }
+ catch(err)
+ {
+console.log(err);
+
+ }
+
+}
+controlSearchResults();
 const showRecipe = async function () {
   try {
     const id =window.location.hash.slice(1)
