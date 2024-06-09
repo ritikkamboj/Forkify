@@ -1,6 +1,7 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
+import resultView from './views/resultView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 // console.log(icons)
@@ -35,13 +36,15 @@ const controlSearchResults = async function()
 {
  try{
   // console.log('jai')
+  resultView.renderSpinner();
   const query = searchView.getQuery();
   console.log(query)
   if(!query)
     return
   await model.loadSearchResults(query);
   // searchView.clear();
-  // console.log(model.state.search.result);
+  console.log(model.state.search.result);
+  resultView.render(model.state.search.result);
 ;
  } 
  catch(err)

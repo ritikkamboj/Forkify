@@ -1,28 +1,28 @@
 class searchView
 {
-    #parentE1 = document.querySelector('.search');
+    _parentE1 = document.querySelector('.search');
 
     getQuery()
     {
         // console.log('baba');
         // console.log(this.#parentE1.querySelector('.search__field'));
        
-        const query =(this.#parentE1.querySelector('.search__field').value);
-        this.#clear();
+        const query =(this._parentE1.querySelector('.search__field').value);
+        this._clear();
         return query;
     }
 
     addHandleSearch(handler)
     {
-        this.#parentE1.addEventListener('submit', function(e){
+        this._parentE1.addEventListener('submit', function(e){
             e.preventDefault();
             handler();
 
         })
     }
-    #clear()
+    _clear()
     {
-        this.#parentE1.querySelector('.search__field').value='';
+        this._parentE1.querySelector('.search__field').value='';
     }
 
 }
