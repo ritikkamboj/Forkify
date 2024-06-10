@@ -1,37 +1,33 @@
 import view from "./view";
 
+import icons from "url:../../img/icons.svg";
+
  class resultView extends view{
     _parentElement = document.querySelector('.results');
+    _errMessege =`No recipe found for your query, please try again !`;
+    _messege=``;
 
 
     _generateMarkup()
     {
-        let newData;
-       
         console.log(this._data);
 
-       newData= this._data.map(this._generateMarkupPreview).join('');
-       console.log(newData)
+        return this._data.map(this._generateMarkupPreview).join('') ;
 
-       return 'jai maata di ';
 
     }
 
-    _generateMarkupPreview()
+    _generateMarkupPreview(result)
     {
         return ` <li class="preview">
-            <a class="preview__link preview__link--active" href="#23456">
+            <a class="preview__link " href="#${result.id}">
               <figure class="preview__fig">
-                <img src="src/img/test-1.jpg" alt="Test" />
+                <img src="${result.image}" alt="${result.title}" />
               </figure>
               <div class="preview__data">
-                <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-                <p class="preview__publisher">The Pioneer Woman</p>
-                <div class="preview__user-generated">
-                  <svg>
-                    <use href="src/img/icons.svg#icon-user"></use>
-                  </svg>
-                </div>
+                <h4 class="preview__title">${result.title}</h4>
+                <p class="preview__publisher">${result.publisher}</p>
+                
               </div>
             </a>
           </li>`;
