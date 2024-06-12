@@ -49,7 +49,7 @@ const controlSearchResults = async function()
   // searchView.clear();
   console.log(model.state.search.result);
   // resultView.render(model.state.search.result);
-  resultView.render(model.getSearchResultsPage(2));
+  resultView.render(model.getSearchResultsPage());
 
   paginationView.render(model.state.search);
 
@@ -193,11 +193,22 @@ showRecipe();
 // window.addEventListener('load',showRecipe);
 
 // in above two window line code we can see that htey not follow DRY principle so to correct that :
+const controlPagination= function(goToPage)
+{
+  // console.log(goToPage);
+
+//getting the new results
+  resultView.render(model.getSearchResultsPage(goToPage));
+// getting the new pagination button 
+  paginationView.render(model.state.search);
+}
+
 
 const init = function()
 {
 recipeView.addHandleRender(showRecipe);
 searchView.addHandleSearch(controlSearchResults);
+paginationView.addHandlerClick(controlPagination);
 }
-init()
+init();
 
