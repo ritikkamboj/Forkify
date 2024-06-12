@@ -95,5 +95,6 @@ export const updateServings = function( newServings)
     ing.quantity = ing.quantity * newServings / state.recipe.servings;
   })
   
+  console.log(newServings);
   state.recipe.servings = newServings;
 }
