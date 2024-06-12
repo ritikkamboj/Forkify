@@ -35,7 +35,7 @@ export const loadRecipe = async function(id)
   
       };
 
-      console.log(state.recipe);
+      console.log(state);
     }catch(err)
     {
        console.log(`${err} in model.js `);
@@ -66,6 +66,7 @@ export const loadRecipe = async function(id)
     } 
     ); 
     console.log(state.search);
+    console.log(state.recipe);
 
   }
   catch(err)
@@ -88,3 +89,11 @@ export const loadRecipe = async function(id)
 
 
 //  8: {publisher: "My Baking Addiction", image_url: "http://forkify-api.herokuapp.com/images/PizzaDip21of14f05.jpg", title: "Pizza Dip", id: "664c8f193e7aa067e94e840d"}
+export const updateServings = function( newServings)
+{
+  state.recipe.ingredients.forEach(ing =>{
+    ing.quantity = ing.quantity * newServings / state.recipe.servings;
+  })
+  
+  state.recipe.servings = newServings;
+}
