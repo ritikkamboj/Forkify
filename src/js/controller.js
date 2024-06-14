@@ -210,7 +210,8 @@ const controlServings = function(newServings)
 {
   model.updateServings(newServings);
 
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe); // this line re render those fields also which are not have to be re rendered , to cure this 
+  recipeView.update(model.state.recipe);
 }
 
 

@@ -19,7 +19,7 @@ import icons from "url:../../img/icons.svg";
 
     _generateMarkupPreview(result)
     {
-        return ` <li class="preview">
+        return `<li class="preview">
             <a class="preview__link " href="#${result.id}">
               <figure class="preview__fig">
                 <img src="${result.image}" alt="${result.title}" />
