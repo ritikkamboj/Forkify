@@ -40,10 +40,22 @@ export default class view
 
         console.log(curEl ,newEl.isEqualNode(curEl));
 
+        //update changed Text 
+        if(!(newEl.isEqualNode(curEl)) && newEl.firstChild?.nodeValue.trim() !== '')
+          {
+            curEl.textContent = newEl.textContent;
+            // console.log('❤',newEl.firstChild.nodeValue.trim()); // this will give on console, that value of the parent's child element whose value got changes 
+          }
 
-
-      })
-      console.log("jai");
+          // update changes Attributes 
+          if(!(newEl.isEqualNode(curEl)))
+            {
+              // console.log(Array.from(newEl.attributes));
+              Array.from(newEl.attributes).forEach(attr => curEl.setAttribute(attr.name ,attr.value));
+              
+            }
+   })
+      // console.log("jai");
       
     }
   renderSpinner = function () {
