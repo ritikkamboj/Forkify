@@ -76,7 +76,7 @@ const showRecipe = async function () {
       return ;
     recipeView.renderSpinner();
 
-    resultView.render(model.getSearchResultsPage());
+    resultView.update(model.getSearchResultsPage());
    await model.loadRecipe(id); //why this function don't return anything  now here its calling a async function , which give in retunr promise to handle this we have to attch the await keyword
 
    const {recipe} =model.state;
