@@ -215,12 +215,27 @@ const controlServings = function(newServings)
   // recipeView.render(model.state.recipe); // this line re render those fields also which are not have to be re rendered , to cure this 
   recipeView.update(model.state.recipe);
 }
+const controlAddBookmark = function()
+{
+ 
+  if(!model.state.recipe.bookmarked) {
+    model.addBookmark(model.state.recipe);
+    console.log("eid mubarak ")
+  }
+  else 
+   model.deleteBookmark(model.state.recipe.id);
+  // model.addBookmark(model.state.recipe);
+  console.log(model.state.recipe);
+  recipeView.update(model.state.recipe);
+  
+}
 
 
 const init = function()
 {
 recipeView.addHandleRender(showRecipe);
 recipeView.addHandlerUpdateServings(controlServings);
+recipeView.addHandlerBookmark(controlAddBookmark);
 searchView.addHandleSearch(controlSearchResults);
 paginationView.addHandlerClick(controlPagination);
 
