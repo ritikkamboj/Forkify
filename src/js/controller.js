@@ -3,6 +3,8 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 // console.log(icons)
@@ -77,6 +79,9 @@ const showRecipe = async function () {
     recipeView.renderSpinner();
 
     resultView.update(model.getSearchResultsPage());
+
+    bookmarksView.update(model.state.bookmarks);
+    
    await model.loadRecipe(id); //why this function don't return anything  now here its calling a async function , which give in retunr promise to handle this we have to attch the await keyword
 
    const {recipe} =model.state;
@@ -215,6 +220,8 @@ const controlServings = function(newServings)
   // recipeView.render(model.state.recipe); // this line re render those fields also which are not have to be re rendered , to cure this 
   recipeView.update(model.state.recipe);
 }
+
+
 const controlAddBookmark = function()
 {
  
@@ -227,7 +234,8 @@ const controlAddBookmark = function()
   // model.addBookmark(model.state.recipe);
   console.log(model.state.recipe);
   recipeView.update(model.state.recipe);
-  
+
+  bookmarksView.render(model.state.bookmarks);
 }
 
 
